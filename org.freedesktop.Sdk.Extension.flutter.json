@@ -1,0 +1,61 @@
+{
+    "id": "org.freedesktop.Sdk.Extension.flutter",
+    "branch": "19.08",
+    "runtime": "org.freedesktop.Sdk",
+    "runtime-version": "19.08",
+    "sdk": "org.freedesktop.Sdk",
+    "build-extension": true,
+    "separate-locales": false,
+    "appstream-compose": false,
+    "build-options": {
+        "prefix": "/usr/lib/sdk/flutter"
+    },
+    "modules": [
+        {
+            "name": "flutter",
+            "buildsystem": "simple",
+            "build-commands": [
+                "cp -r flutter /usr/lib/sdk/"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "path": "flutter_linux_1.20.2-stable.tar.xz",
+                    "dest": "flutter"
+                }
+            ]
+        },
+        {
+            "name": "scripts",
+            "buildsystem": "simple",
+            "build-commands": [
+                "cp enable.sh /usr/lib/sdk/flutter/"
+            ],
+            "sources": [
+                {
+                    "type": "script",
+                    "dest-filename": "enable.sh",
+                    "commands": [
+                        "export PATH=$PATH:/usr/lib/sdk/flutter/bin",
+                        "export PUB_CACHE=$XDG_CACHE_HOME/pub-cache"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "appdata",
+            "buildsystem": "simple",
+            "build-commands" : [
+                "mkdir -p ${FLATPAK_DEST}/share/appdata",
+                "cp org.freedesktop.Sdk.Extension.flutter.appdata.xml ${FLATPAK_DEST}/share/appdata/",
+                "appstream-compose  --basename=org.freedesktop.Sdk.Extension.flutter --prefix=${FLATPAK_DEST} --origin=flatpak org.freedesktop.Sdk.Extension.flutter"
+            ],
+            "sources": [
+                {
+                    "type": "file",
+                    "path": "org.freedesktop.Sdk.Extension.flutter.appdata.xml"
+                }
+            ]
+        }
+    ]
+}
