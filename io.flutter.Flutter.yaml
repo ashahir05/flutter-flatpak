@@ -31,3 +31,6 @@ modules:
       sources:
         - type: file
           path: org.freedesktop.Sdk.Extension.flutter.appdata.xml
+      buildsystem: simple
+      build-commands:
+        - 'cp org.freedesktop.Sdk.Extension.flutter.appdata.xml /usr/lib/sdk/flutter/bin/share/appdata'
