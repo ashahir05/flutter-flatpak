@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2020 Ahmed Shahir Samin <ashahir05@gmail.com> -->
+<component type="runtime">
+  <id>org.freedesktop.Sdk.Extension.flutter</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>LicenseRef-proprietary=https://raw.githubusercontent.com/flutter/engine/master/sky/packages/sky_engine/LICENSE AND BSD-3-Clause</project_license>
+  <name>Flutter Sdk extension</name>
+  <summary>Flutter and Dart SDK and tools</summary>
+  <description>Flutter and Dart SDK and tools</description>
+  <url type="homepage">https://github.com/flathub/org.freedesktop.Sdk.Extension.rust-stable/</url>
+  <translation/>
+  <update_contact>danigm@gnome.org</update_contact>
+  <releases>
+    <release version="1.20.2" date="2020-08-14"/>
+  </releases>
+</component>
