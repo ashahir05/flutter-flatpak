@@ -1,5 +1,5 @@
 {
-    "id": "org.freedesktop.Sdk.Extension.flutter",
+    "id": "org.freedesktop.Sdk.Extension.flutter-dart",
     "branch": "19.08",
     "runtime": "org.freedesktop.Sdk",
     "runtime-version": "19.08",
@@ -77,13 +77,13 @@
             "buildsystem": "simple",
             "build-commands" : [
                 "mkdir -p ${FLATPAK_DEST}/share/appdata",
-                "cp org.freedesktop.Sdk.Extension.flutter.appdata.xml ${FLATPAK_DEST}/share/appdata/",
-                "appstream-compose  --basename=org.freedesktop.Sdk.Extension.flutter --prefix=${FLATPAK_DEST} --origin=flatpak org.freedesktop.Sdk.Extension.flutter"
+                "cp org.freedesktop.Sdk.Extension.flutter-dart.appdata.xml ${FLATPAK_DEST}/share/appdata/",
+                "appstream-compose  --basename=org.freedesktop.Sdk.Extension.flutter-dart --prefix=${FLATPAK_DEST} --origin=flatpak org.freedesktop.Sdk.Extension.flutter-dart"
             ],
             "sources": [
                 {
                     "type": "file",
-                    "path": "org.freedesktop.Sdk.Extension.flutter.appdata.xml"
+                    "path": "org.freedesktop.Sdk.Extension.flutter-dart.appdata.xml"
                 }
             ]
         }
