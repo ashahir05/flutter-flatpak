@@ -1,0 +1,12 @@
+#!/bin/sh
+
+export PUB_CACHE="$XDG_CACHE_HOME/pub-cache"
+
+if [[ ! -f "$XDG_CACHE_HOME/flutter-version" ]] || \
+   ! cmp -s /usr/lib/sdk/flutter/version-base "$XDG_CACHE_HOME/flutter-version"; then
+  rm -rf "$XDG_CACHE_HOME/flutter" "$XDG_CACHE_HOME/flutter-version"
+  cp -r /usr/lib/sdk/flutter/bin/cache-base "$XDG_CACHE_HOME/flutter"
+  cp /usr/lib/sdk/flutter/version-base "$XDG_CACHE_HOME/flutter-version"
+fi
+
+/usr/lib/sdk/flutter/bin/dart "$@"
