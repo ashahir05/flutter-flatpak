@@ -13,6 +13,9 @@
     "modules": [
         {
             "name": "flutter",
+            "only-arches": [
+                "x86_64"
+            ],
             "buildsystem": "simple",
             "build-commands": [
                 "cp -r flutter /usr/lib/sdk/",
