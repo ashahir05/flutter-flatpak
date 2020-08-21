@@ -16,7 +16,7 @@
             "buildsystem": "simple",
             "build-commands": [
                 "cp -r flutter /usr/lib/sdk/",
-                "sed -i -f flutter-directories.sed /usr/lib/sdk/flutter/packages/flutter_tools/lib/src/context_runner.dart",
+                "sed -i -f flutter-dart-directories.sed /usr/lib/sdk/flutter/packages/flutter_tools/lib/src/context_runner.dart",
                 "cd /usr/lib/sdk/flutter/packages/flutter_tools && PUB_ENVIRONMENT=flutter_install PUB_CACHE=/usr/lib/sdk/flutter/.pub-cache /usr/lib/sdk/flutter/bin/cache/dart-sdk/bin/pub upgrade --verbosity=error --offline;",
                 "/usr/lib/sdk/flutter/bin/cache/dart-sdk/bin/dart --snapshot=/usr/lib/sdk/flutter/bin/cache/flutter_tools.snapshot --packages=/usr/lib/sdk/flutter/packages/flutter_tools/.packages /usr/lib/sdk/flutter/packages/flutter_tools/bin/flutter_tools.dart",
                 "mv /usr/lib/sdk/flutter/bin/cache{,-base}",
