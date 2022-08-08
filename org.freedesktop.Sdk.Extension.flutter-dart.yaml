@@ -1,0 +1,56 @@
+id: org.freedesktop.Sdk.Extension.flutter-dart
+branch: '21.08'
+runtime: org.freedesktop.Sdk
+runtime-version: '21.08'
+sdk: org.freedesktop.Sdk
+build-extension: true
+separate-locales: false
+appstream-compose: false
+build-options:
+  prefix: /usr/lib/sdk/flutter-dart
+  build-args:
+  - --share=network
+modules:
+- name: flutter
+  only-arches:
+  - x86_64
+  buildsystem: simple
+  build-commands:
+  - mv * /usr/lib/sdk/flutter-dart
+  - mv .git /usr/lib/sdk/flutter-dart
+  - sed -i -f /usr/lib/sdk/flutter-dart/flutter-dart-directories.sed /usr/lib/sdk/flutter-dart/packages/flutter_tools/lib/src/context_runner.dart
+  - cd /usr/lib/sdk/flutter-dart/packages/flutter_tools && PUB_ENVIRONMENT=flutter_install PUB_CACHE=/usr/lib/sdk/flutter-dart/.pub-cache /usr/lib/sdk/flutter-dart/bin/cache/dart-sdk/bin/dart pub upgrade
+  - /usr/lib/sdk/flutter-dart/bin/cache/dart-sdk/bin/dart --snapshot=/usr/lib/sdk/flutter-dart/bin/cache/flutter_tools.snapshot --packages=/usr/lib/sdk/flutter-dart/packages/flutter_tools/.packages /usr/lib/sdk/flutter-dart/packages/flutter_tools/bin/flutter_tools.dart
+  - mv /usr/lib/sdk/flutter-dart/bin/cache{,-base}
+  - mv /usr/lib/sdk/flutter-dart/version{,-base}
+  - ln -s /var/cache/flutter /usr/lib/sdk/flutter-dart/bin/cache
+  - ln -s /var/cache/flutter-version /usr/lib/sdk/flutter-dart/version
+  sources:
+  - type: archive
+    url: https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.0.5-stable.tar.xz
+    sha512: 21d0455b0044539e222b9790c5336b11dae5dbfe5a444e97d3c27f9df19ccf238fe444198bbb6a90b1062e11da386c86c66d0a57cd91450a692536bab09f9506
+  - type: file
+    path: flutter-dart-directories.sed
+- name: bin
+  buildsystem: simple
+  build-commands:
+  - mv /usr/lib/sdk/flutter-dart/bin/flutter{,-base}
+  - mv /usr/lib/sdk/flutter-dart/bin/dart{,-base}
+  - mv flutter /usr/lib/sdk/flutter-dart/bin/flutter
+  - mv dart /usr/lib/sdk/flutter-dart/bin/dart
+  - chmod +x /usr/lib/sdk/flutter-dart/bin/flutter
+  - chmod +x /usr/lib/sdk/flutter-dart/bin/dart
+  sources:
+  - type: file
+    path: flutter
+  - type: file
+    path: dart
+- name: appdata
+  buildsystem: simple
+  build-commands:
+  - mkdir -p ${FLATPAK_DEST}/share/appdata
+  - cp org.freedesktop.Sdk.Extension.flutter-dart.appdata.xml ${FLATPAK_DEST}/share/appdata/
+  - appstream-compose  --basename=org.freedesktop.Sdk.Extension.flutter-dart --prefix=${FLATPAK_DEST} --origin=flatpak org.freedesktop.Sdk.Extension.flutter-dart
+  sources:
+  - type: file
+    path: org.freedesktop.Sdk.Extension.flutter-dart.appdata.xml
